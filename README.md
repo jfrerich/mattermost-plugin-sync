@@ -11,4 +11,21 @@ The Makefile contains commands to to the following process
 * run [script](runme.zsh) to copy common files from `starter-template` to plugin repo
 * `git status` will show any differences between the plugin repo and the latest common files in `mattermost-plugin-starter-template`
 
-included common files are included in [script](runme.zsh) as an array.
+Included common files are added to the `include_files` array in [script](runme.zsh).
+
+```sh 
+# root dir
+include_files=(.editorconfig)
+include_files+=.gitattributes
+include_files+=.gitignore
+include_files+=LICENSE
+include_files+=Makefile
+# server dir
+include_files+=server/.gitignore
+# webapp dir
+include_files+=webapp/.eslintrc.json 
+include_files+=webapp/.gitignore
+include_files+=webapp/babel.config.js
+include_files+=webapp/tsconfig.json
+include_files+=webapp/webpack.config.js
+```
