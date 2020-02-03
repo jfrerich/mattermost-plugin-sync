@@ -4,11 +4,9 @@ This repo contains a Makefile and script to help automate some of the processes 
 
 ### Instructions
 
-git clone https://github.com/jfrerich/mattermost-plugin-sync
-
-cd `mattermost-plugin-sync/`
-
-`make plugin_repo=<plugin_repo_name> github_profile=<profile>`
+* git clone https://github.com/jfrerich/mattermost-plugin-sync
+* cd `mattermost-plugin-sync/`
+* `make plugin_repo=<plugin_repo_name> github_profile=<profile>`
   * Example:
   * `make plugin_repo=mattermost-plugin-jira github_profile=mattermost`
 
