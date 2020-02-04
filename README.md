@@ -2,7 +2,16 @@
 
 This repo contains a Makefile and script to help automate some of the processes needed to merge the latest common files from https://github.com/mattermost/mattermost-plugin-starter-template to any plugin repo.
 
-The Makefile contains commands to do the following process
+### Instructions
+
+* git clone https://github.com/jfrerich/mattermost-plugin-sync
+* cd `mattermost-plugin-sync/`
+* `make plugin_repo=<plugin_repo_name> github_profile=<profile>`
+  * Example:
+  * `make plugin_repo=mattermost-plugin-jira github_profile=mattermost`
+
+### Makefile contents
+The Makefile contains commands to to the following process
 
 * clone `mattermost-plugin-starter-template`
 * clone plugin repo (uses args to `make`)
@@ -13,7 +22,7 @@ The Makefile contains commands to do the following process
 
 Included common files are added to the `include_files` array in [script](runme.zsh).
 
-```sh 
+```sh
 # root dir
 include_files=(.editorconfig)
 include_files+=.gitattributes

@@ -6,7 +6,7 @@ PLUGIN_TEMPLATE_REPO = mattermost/$(PLUGIN_TEMPLATE_DIR)
 
 # include setup.mk
 
-# clone repos and copy files
+## clone repos and copy files
 all: check-input copyfiles
 
 check-input:
@@ -45,7 +45,7 @@ copyfiles: check-input getstartertemplate getpluginforsync
 	@echo "copying common files from $(PLUGIN_TEMPLATE_DIR) to $(plugin_repo)"
 	zsh ./runme.zsh $(PLUGIN_TEMPLATE_DIR) $(plugin_repo)
 
-## clean will rm -rf the plugin and starter-template direcories
+## clean will rm -rf the plugin and starter-template directories
 .PHONY: clean
 clean: check-input
 	@echo "rm -rf $(PLUGIN_TEMPLATE_DIR) $(plugin_repo)"
