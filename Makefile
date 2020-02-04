@@ -43,7 +43,7 @@ pluginsyncbranch: check-input getpluginforsync
 .PHONY: copyfiles
 copyfiles: check-input getstartertemplate getpluginforsync
 	@echo "copying common files from $(PLUGIN_TEMPLATE_DIR) to $(plugin_repo)"
-	zsh ./runme.zsh
+	zsh ./runme.zsh $(PLUGIN_TEMPLATE_DIR) $(plugin_repo)
 
 ## clean will rm -rf the plugin and starter-template direcories
 .PHONY: clean

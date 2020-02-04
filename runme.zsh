@@ -1,8 +1,5 @@
-PLUGIN_TEMPLATE_DIR=mattermost-plugin-starter-template
-PLUGIN_TEMPLATE_REPO=mattermost/$PLUGIN_TEMPLATE_DIR
-
-PLUGIN_DIR=mattermost-plugin-jira
-PLUGIN_REPO=mattermost/$PLUGIN_DIR
+PLUGIN_TEMPLATE_DIR=$1
+PLUGIN_DIR=$2
 
 declare -a include_files
 # root dir

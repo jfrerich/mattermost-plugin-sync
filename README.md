@@ -2,7 +2,7 @@
 
 This repo contains a Makefile and script to help automate some of the processes needed to merge the latest common files from https://github.com/mattermost/mattermost-plugin-starter-template to any plugin repo.
 
-The Makefile contains commands to to the following process
+The Makefile contains commands to do the following process
 
 * clone `mattermost-plugin-starter-template`
 * clone plugin repo (uses args to `make`)
