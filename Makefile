@@ -1,47 +1,48 @@
+SHELL := bash
+
 plugin_repo ?= 
 github_profile ?= 
 
 PLUGIN_TEMPLATE_DIR = mattermost-plugin-starter-template
 PLUGIN_TEMPLATE_REPO = mattermost/$(PLUGIN_TEMPLATE_DIR)
 
+A=$(shell cd $(plugin_repo)/webapp; sh -c 'npm audit > /dev/null 2>&1'; echo $$? )
+# B=$(shell cd $(plugin_repo)/webapp; echo $$? )
 # include setup.mk
+
 
 ## print all help if not target specified
 @empty: help
 .PHONY: empty
 
+# reference: https://stackoverflow.com/questions/15229833/set-makefile-variable-inside-target#15230658
+# -- used target of same name to define a variable to be used later
+#  (createbranch target)
 ## sync latest starter template files to a plugin
+sync: branchname=sync-to-starter-plugin-branch
 sync: check-plugin-defined sync-copystarterfiles createbranch
-	# branchname := sync-to-starter-plugin-branch
+.PHONY: sync
 
 ## bumps a version of plugin 
-bump: check-plugin-defined cloneplugin
-	# branchname := sync-to-starter-plugin-branch
+bump: branchname=bump-plugin-version
+bump: check-plugin-defined cloneplugin clonestartertemplate createbranch
+.PHONY: bump
 
-some_recipe:
-	sh -c 'exit 123'; || (echo "thid failed")
 
-# reference: https://stackoverflow.com/questions/15229833/set-makefile-variable-inside-target#15230658
 ## check npm audit inside a plugin repo
-security: branchname=bump-dependency-versions
-# security: check-plugin-defined cloneplugin createbranch
-security: 
-	cd $(plugin_repo)/webapp; sh -c 'npm audit > /dev/null 2>&1'; echo $?; 
-	# EXIT_CODE=$?
-	# echo "exit code =  $(EXIT_CODE)"
-	# EXIT_CODE=$?;
-	# @echo "exit code = $(EXIT_CODE)"
-	#
-	# cd $(plugin_repo)/webapp;\
-	# sh -c 'npm audit';
-	# EXIT_CODE=$?;
-	# @echo "exit code = $(EXIT_CODE)"
-	#
-	# if [ $OUT -eq 0 ]; then
-	# 	echo "npm audit failed.. Need to run npm audit fix"
-	# else
-	# 	echo "npm audit fix passed"
-	# fi
+# security: branchname=bump-dependency-versions
+# security: check-plugin-defined 
+security:
+ifeq ("a", "z")
+	echo "npm audit passed!" 
+	echo $A
+else ("a", "a")
+	echo "npm audit failed" 
+endif
+
+		# if [ "a" == "a" ]; then \
+		# 	echo "npm audit passed!" \
+		# fi
 
 ## check required CLI inputs are set
 check-plugin-defined:
@@ -66,7 +67,7 @@ cloneplugin: check-plugin-defined
 
 .PHONY: createbranch
 ## creates plugin branch (from master) for preparing diff and PR
-createbranch: check-plugin-defined cloneplugin
+createbranch: 
 	echo creating sync branch for $(plugin_repo)
 	cd $(plugin_repo) \
 	&& git pull \
